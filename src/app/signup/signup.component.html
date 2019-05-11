@@ -1,27 +1,52 @@
-<div id="login">
+<div id="signup">
   <h3 class="text-center text-white pt-5">SignUp Form</h3>
   <div class="container">
-      <div id="login-row" class="row justify-content-center align-items-center">
-          <div id="login-column" class="col-md-6">
-              <div id="login-box" class="col-md-12">
-                  <form id="login-form" class="form" action="" method="post">
+      <div id="signup-row" class="row justify-content-center align-items-center">
+          <div id="signup-column" class="col-md-6">
+              <div id="signup-box" class="col-md-12">
+                  <form id="signup-form" class="form" (ngSubmit)='signUp(f)' #f='ngForm'>
                       <h3 class="text-center text-info">SignUp</h3>
                       <div class="form-group">
                           <label for="email" class="text-info">Email</label><br>
-                          <input type="email" name="email" id="email" class="form-control">
+                          <input type="email" name="email" id="email" class="form-control" required ngModel #email='ngModel' email>
+                          <div class="alert alert-danger" *ngIf='email.touched && email.invalid'>
+                               <div *ngIf='email.errors.email'>
+                                    Email is not valid
+                               </div>
+                               <div *ngIf='email.errors.required'>
+                                   Email is required
+                               </div>
+                          </div>
                       </div>
 
                       <div class="form-group">
                         <label for="password" class="text-info">Password</label><br>
-                        <input type="text" name="password" id="password" class="form-control">
+                        <input type="password" name="password" id="password" class="form-control" required ngModel #pass='ngModel' minlength="6">
+                       <div class="alert alert-danger" *ngIf='pass.touched && pass.invalid'>
+                               <div *ngIf='pass.errors.required'>Password is required</div>
+                               <div *ngIf='pass.errors.minlength'>Password should be greater than 6</div>
+                       </div>
+
+
                     </div>
                       <div class="form-group">
                           <label for="firstname" class="text-info">firstname</label><br>
-                          <input type="text" name="firstname" id="firstname" class="form-control">
+                          <input type="text" name="firstname" id="firstname" class="form-control" required ngModel #fname='ngModel'>
+                          <div class='alert alert-danger' *ngIf='fname.touched && fname.invalid'>
+                             <div *ngIf='fname.errors.required'>First name is required</div>
+
+                          </div>
                       </div>
+
+
                       <div class="form-group">
                         <label for="lastname" class="text-info">lastname</label><br>
-                        <input type="text" name="lastname" id="lastname" class="form-control">
+                        <input type="text" name="lastname" id="lastname" class="form-control" #lname='ngModel' required ngModel>
+
+                        <div class='alert alert-danger' *ngIf='fname.touched && fname.invalid'>
+                            <div *ngIf='fname.errors.required'>First name is required</div>
+
+                         </div>
                      </div>
 
                      <div class="form-group">
@@ -31,7 +56,7 @@
 
 
                       <div id="register-link" class="text-right">
-                          <a href="#" class="text-info">Login here</a>
+                          <a routerLink ='/login' class="text-info">Login here</a>
                       </div>
                   </form>
               </div>

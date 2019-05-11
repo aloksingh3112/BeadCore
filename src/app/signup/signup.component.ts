@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Component } from '@angular/core';
 
 
@@ -9,5 +10,11 @@ import { Component } from '@angular/core';
   styleUrls:['./signup.component.scss']
 })
 export class SignupComponent{
+  constructor(){
 
+  }
+
+  signUp(form: NgForm){
+      console.log(form);
+  }
 }

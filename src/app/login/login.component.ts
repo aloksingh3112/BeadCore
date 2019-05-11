@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -9,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrls:['./login.component.scss']
 })
 export class LoginComponent{
+  constructor(){}
+   login(form: NgForm){
+     console.log(form);
+   }
 
 }
