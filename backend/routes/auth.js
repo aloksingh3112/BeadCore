@@ -10,8 +10,9 @@ router.post('/signup',async (req,res)=>{
   try {
     const isEmail=await SignUpModel.findOne({email:req.body.email});
     if(isEmail){
-      return res.status(409).json({
-        message:"User already exist"
+      return res.status(200).json({
+        message:"User already exist",
+        status:409
       })
     }
     const userModel=new SignUpModel({
@@ -44,14 +45,16 @@ router.post('/login',async (req,res)=>{
   try {
       const user= await SignUpModel.findOne({email:req.body.email});
       if(!user){
-        return res.status(404).json({
-          message:"You are not registered"
+        return res.status(200).json({
+          message:"You are not registered",
+          status:404
         })
       }
 
        if(!bcrypt.compareSync(req.body.password,user.password)){
-        return res.status(403).json({
-          message:"Wrong Credentials"
+        return res.status(200).json({
+          message:"Wrong Credentials",
+          status:403
         })
       }
 

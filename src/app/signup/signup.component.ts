@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { NgForm } from '@angular/forms';
 import { Component } from '@angular/core';
 
@@ -10,11 +11,21 @@ import { Component } from '@angular/core';
   styleUrls:['./signup.component.scss']
 })
 export class SignupComponent{
-  constructor(){
+  message;
+  constructor(private authService: AuthService){
 
   }
 
   signUp(form: NgForm){
-      console.log(form);
+    this.message= null;
+    this.authService.signup(form.value)
+      .subscribe(
+        data=>{
+          this.message=data.message;
+          form.reset();
+        },
+        err=>{}
+      )
+
   }
 }

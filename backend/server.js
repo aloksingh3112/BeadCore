@@ -13,6 +13,13 @@ mongooge.connect('mongodb://amtica:alok3112@ds145892.mlab.com:45892/amtica',{ us
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
 
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept,Auth');
+  res.setHeader('Access-Control-Allow-Methods', 'POST,PUT, GET, PATCH, DELETE, OPTIONS');
+  next();
+});
+
 app.use('/auth',authRoute);
 
 const port= process.env.port||'3000';

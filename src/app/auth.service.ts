@@ -1,20 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {catchError} from 'rxjs/operators'
+import { throwError } from 'rxjs';
 
 
-@Injectable({
-  providedIn:'root'
-})
+@Injectable()
 export class AuthService{
-   constructor(private http:HttpClient){
+   URL = 'http://localhost:3000/auth';
+   constructor(private http: HttpClient){
 
    }
 
-   login(){
-
+   login(userData){
+     return this.http.post<any>(`${this.URL}/login`,userData)
+        .pipe(
+          catchError(
+            err=>throwError(err)
+          )
+        )
    }
 
-   signup(){
+   signup(userData){
+     const body=JSON.stringify(userData);
+     return this.http.post<any>(`${this.URL}/signup`,userData)
+       .pipe(
+         catchError(
+           err=>throwError(err)
+         )
+       )
 
    }
 }

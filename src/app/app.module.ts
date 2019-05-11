@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { RoutingModule } from './routing.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -22,7 +23,7 @@ import { AppComponent } from './app.component';
     CustomFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
