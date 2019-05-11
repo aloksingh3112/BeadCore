@@ -1,5 +1,5 @@
 <div id="signup">
-  <h3 class="text-center text-white pt-5">SignUp Form</h3>
+  <h3 class="text-center text-white pt-3">SignUp Form</h3>
   <div class="container">
       <div id="signup-row" class="row justify-content-center align-items-center">
           <div id="signup-column" class="col-md-6">
@@ -43,15 +43,15 @@
                         <label for="lastname" class="text-info">lastname</label><br>
                         <input type="text" name="lastname" id="lastname" class="form-control" #lname='ngModel' required ngModel>
 
-                        <div class='alert alert-danger' *ngIf='fname.touched && fname.invalid'>
-                            <div *ngIf='fname.errors.required'>First name is required</div>
+                        <div class='alert alert-danger' *ngIf='lname.touched && lname.invalid'>
+                            <div *ngIf='lname.errors.required'>First name is required</div>
 
                          </div>
                      </div>
 
                      <div class="form-group">
 
-                      <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                      <input type="submit" name="submit" class="btn btn-info btn-md mt-1" value="submit">
                   </div>
 
 
