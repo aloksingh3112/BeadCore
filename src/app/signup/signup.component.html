@@ -30,24 +30,15 @@
 
                     </div>
                       <div class="form-group">
-                          <label for="firstname" class="text-info">firstname</label><br>
-                          <input type="text" name="firstname" id="firstname" class="form-control" required ngModel #fname='ngModel'>
+                          <label for="username" class="text-info">UserName</label><br>
+                          <input type="text" name="username" id="username" class="form-control" required ngModel #fname='ngModel'>
                           <div class='alert alert-danger' *ngIf='fname.touched && fname.invalid'>
-                             <div *ngIf='fname.errors.required'>First name is required</div>
+                             <div *ngIf='fname.errors.required'>User name is required</div>
 
                           </div>
                       </div>
 
 
-                      <div class="form-group">
-                        <label for="lastname" class="text-info">lastname</label><br>
-                        <input type="text" name="lastname" id="lastname" class="form-control" #lname='ngModel' required ngModel>
-
-                        <div class='alert alert-danger' *ngIf='lname.touched && lname.invalid'>
-                            <div *ngIf='lname.errors.required'>First name is required</div>
-
-                         </div>
-                     </div>
 
                      <div class="form-group">
 

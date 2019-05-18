@@ -1,3 +1,5 @@
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
 import { AuthService } from './auth.service';
 import { RoutingModule } from './routing.module';
 import { LoginComponent } from './login/login.component';
@@ -14,7 +16,9 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

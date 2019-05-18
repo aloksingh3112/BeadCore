@@ -11,23 +11,30 @@ router.post('/signup',async (req,res)=>{
     const isEmail=await SignUpModel.findOne({email:req.body.email});
     if(isEmail){
       return res.status(200).json({
-        message:"User already exist",
+        message:"Email already exist",
+        status:409
+      })
+    }
+    const isUsername=await SignUpModel.findOne({username:req.body.username});
+    if(isUsername){
+      return res.status(200).json({
+        message:"Username already exist",
         status:409
       })
     }
     const userModel=new SignUpModel({
       email:req.body.email,
       password:bcrypt.hashSync(req.body.password,10),
-      firstname:req.body.firstname,
-      lastname:req.body.lastname
+      username:req.body.username,
+
 
     })
 
     const userData=await userModel.save();
-    const userDataResult=_.pick(userData,['_id',"email","firstname","lastname"])
+
      return res.status(200).json({
        message:"user Registered successfully",
-       data:userDataResult
+       status:200
      })
 
   } catch (error) {
@@ -43,7 +50,7 @@ router.post('/signup',async (req,res)=>{
 
 router.post('/login',async (req,res)=>{
   try {
-      const user= await SignUpModel.findOne({email:req.body.email});
+      const user= await SignUpModel.findOne({username:req.body.username});
       if(!user){
         return res.status(200).json({
           message:"You are not registered",
@@ -61,7 +68,8 @@ router.post('/login',async (req,res)=>{
       const userResult=_.pick(user,['_id','email','firstname','lastname']);
       return res.status(200).json({
         message:"You are login",
-        data:userResult
+        data:userResult,
+        status:200
       })
 
 
