@@ -23,6 +23,7 @@ export class LoginComponent{
            form.reset();
            console.log(data);
            if(data.status == 200){
+             localStorage.setItem('token',data.token);
              this.router.navigate(['/home']);
            }
 

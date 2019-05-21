@@ -1,5 +1,5 @@
 import { AuthService } from './../auth.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 
@@ -9,8 +9,16 @@ import { Component } from '@angular/core';
   templateUrl:'./home.component.html',
   styleUrls:['./home.component.css']
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit{
   constructor(private authService: AuthService){
 
+  }
+  ngOnInit(){
+    console.log('hello');
+    this.authService.getUser()
+      .subscribe(
+        data=>console.log(data),
+        err=>console.log(err)
+      )
   }
 }

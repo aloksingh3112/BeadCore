@@ -4,7 +4,8 @@ const bodyparser=require('body-parser');
 const http=require('http');
 const app=express();
 const authRoute=require('./routes/auth');
-const socket=require('socket.io');
+const userRoute=require('./routes/user');
+
 
 mongooge.connect('mongodb://amtica:alok3112@ds145892.mlab.com:45892/amtica',{ useNewUrlParser: true },()=>{
   console.log("database connected")
@@ -22,6 +23,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/auth',authRoute);
+app.use('/user',userRoute);
 
 const port= process.env.port||'3000';
 app.set('port',port);
@@ -31,16 +33,5 @@ server.listen(port,()=>{
   console.log('connected to server'+port)
 })
 
-
-//socket
-var io=socket(server);
-
-io.on('connection',(socket)=>{
-  console.log("connection extablished");
-   socket.on('login',(data)=>{
-     socket.emit('data','Hello')
-   })
-
-})
 
 

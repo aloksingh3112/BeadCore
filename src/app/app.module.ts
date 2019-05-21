@@ -1,3 +1,4 @@
+import { AppIntercepters } from './app.interceptor';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthService } from './auth.service';
@@ -11,6 +12,7 @@ import {CustomFormsModule} from 'ng2-validation';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,11 @@ import { AppComponent } from './app.component';
     CustomFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:AppIntercepters,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

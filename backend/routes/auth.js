@@ -1,9 +1,10 @@
 const express=require('express');
 const router=express.Router();
-const mongoose=require('mongoose');
-const SignUpModel=require('../schema/signupschema');
+
+const SignUpModel=require('../schema/userschema');
 const bcrypt=require('bcryptjs');
 const _=require('lodash');
+const jwt =require('jsonwebtoken')
 
 
 router.post('/signup',async (req,res)=>{
@@ -65,12 +66,17 @@ router.post('/login',async (req,res)=>{
         })
       }
 
-
+    const token=jwt.sign({
+       data:user
+    },'aloksingh',{
+      expiresIn:20000
+    })
 
       return res.status(200).json({
         message:"You are login",
-        data:userResult,
-        status:200
+        status:200,
+        token:token,
+        data:user
       })
 
 
@@ -84,6 +90,8 @@ router.post('/login',async (req,res)=>{
   }
 
 })
+
+
 
 
 

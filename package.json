@@ -21,6 +21,7 @@
     "@angular/router": "~7.2.0",
     "bcryptjs": "^2.4.3",
     "core-js": "^2.5.4",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
     "ng2-validation": "^4.2.0",
     "rxjs": "~6.3.3",
