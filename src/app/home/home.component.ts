@@ -26,13 +26,13 @@ export class HomeComponent implements OnInit{
       const tokenvalue =this.getDecodedAccessToken(token);
       this.authService.getUser()
       .subscribe(
-        data=>{
+        data=> {
+        const array:any[]=data.data.filter(d=>d.logintime!=null);
+        const  index = array.findIndex(i=>i._id==tokenvalue.data._id);
+        array.splice(index,1) ;
 
-        const  index = data.data.findIndex(i=>i._id==tokenvalue.data._id);
-        data.data.splice(index,1) ;
-
-        if(data.data.length>0){
-         this.userData =[...data.data]
+        if(array.length>0){
+         this.userData =[...array];
 
         }
 
@@ -54,17 +54,12 @@ export class HomeComponent implements OnInit{
     }
   }
 
-  getDiff(time,logintime,id){
+  getDiff(time){
     const due =  this.a.diff(time,'minutes');
-    if(!due && !logintime){
-      const index=this.userData.findIndex(i=>i._id==id);
-      console.log("index",index);
-      this.userData.splice(index,1);
-      return null;
-    } else if(!due && logintime){
+    if(!due ){
       return 'LOGIN'
     }
-    else if(due>0 &&due<=1){
+    else if(due<=1){
       return 'JUST NOW'
     }
     else

@@ -8,6 +8,7 @@ const validMiddleware=require('../middleware/token');
 router.get('/getuser',[validMiddleware],async (req,res)=>{
 try {
   const user=await UserModel.find();
+
   if(!user){
     return res.status(200).json({
       data:[],
@@ -37,7 +38,7 @@ router.get('/logout',[validMiddleware],async (req,res)=>{
     const token=jwt.decode(req.headers.auth);
     const user=await UserModel.findOne({_id:token.data._id});
     user.logouttime=Date.now();
-    user.logintime=null;
+
     const userResult=await user.save();
     return res.status(200).json({
       message:"logout succssfully",
