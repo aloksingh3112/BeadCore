@@ -36,7 +36,10 @@ server.listen(port,()=>{
 var io=socket(server);
 
 io.on('connection',(socket)=>{
-  console.log("connection extablished")
+  console.log("connection extablished");
+   socket.on('login',(data)=>{
+     socket.emit('data','Hello')
+   })
 
 })
 

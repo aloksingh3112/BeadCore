@@ -1,6 +1,7 @@
 import { AuthService } from './../auth.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -12,7 +13,7 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent{
   message;
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService,private router: Router){}
    login(form: NgForm){
      this.message= null;
      this.authService.login(form.value)
@@ -20,6 +21,11 @@ export class LoginComponent{
          data=>{
            this.message= data.message;
            form.reset();
+           console.log(data);
+           if(data.status == 200){
+             this.router.navigate(['/home']);
+           }
+
          },
          err=>{}
        )

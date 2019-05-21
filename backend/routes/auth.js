@@ -65,7 +65,8 @@ router.post('/login',async (req,res)=>{
         })
       }
 
-      const userResult=_.pick(user,['_id','email','firstname','lastname']);
+
+
       return res.status(200).json({
         message:"You are login",
         data:userResult,
