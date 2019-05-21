@@ -1,1 +1,14 @@
 <app-header></app-header>
+<div *ngFor='let data of userData'>
+  <div class="card mt-4 mb-4">
+    <div class="card-header">
+     <strong>Email</strong> : {{data?.email}}
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6"><strong>Username</strong> : {{data?.username}}</div>
+        <div class="col-md-6"><strong>Last Seen</strong>: {{getDiff(data.logouttime,data.logintime,data._id)}}</div>
+      </div>
+    </div>
+  </div>
+</div>

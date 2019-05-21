@@ -21,7 +21,7 @@ export class LoginComponent{
          data=>{
            this.message= data.message;
            form.reset();
-           console.log(data);
+
            if(data.status == 200){
              localStorage.setItem('token',data.token);
              this.router.navigate(['/home']);

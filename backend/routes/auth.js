@@ -7,6 +7,7 @@ const _=require('lodash');
 const jwt =require('jsonwebtoken')
 
 
+
 router.post('/signup',async (req,res)=>{
   try {
     const isEmail=await SignUpModel.findOne({email:req.body.email});
@@ -66,8 +67,13 @@ router.post('/login',async (req,res)=>{
         })
       }
 
+
+
+      user.logintime=Date.now();
+      const userResult=await user.save();
+
     const token=jwt.sign({
-       data:user
+       data:userResult
     },'aloksingh',{
       expiresIn:20000
     })
@@ -76,7 +82,7 @@ router.post('/login',async (req,res)=>{
         message:"You are login",
         status:200,
         token:token,
-        data:user
+        data:userResult
       })
 
 
@@ -85,7 +91,8 @@ router.post('/login',async (req,res)=>{
   } catch (error) {
     return res.status(501).json({
       message:"Login failed",
-      err:error
+      err:error,
+      status:501
     })
   }
 

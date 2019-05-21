@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../auth.service';
 import { Component } from '@angular/core';
 
 
@@ -7,5 +9,17 @@ import { Component } from '@angular/core';
   styleUrls:['./header.component.css']
 })
 export class HeaderComponent{
+  constructor(private authService: AuthService,private router:Router){}
 
+  logout(){
+     this.authService.logout()
+     .subscribe(
+       data=>{
+         localStorage.removeItem('token');
+         this.router.navigateByUrl('/login');
+
+       },
+       err=>console.log(err)
+     );
+  }
 }
